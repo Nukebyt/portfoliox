@@ -180,7 +180,7 @@ export default async function Home() {
           <SectionHeading
             eyebrow="About"
             title="About me"
-            // description="A clean portfolio shell with a bold hero, content sections that can be managed from Supabase, and a theme system that keeps the entire page consistent."
+            description=""
           />
           <div className="mt-10 grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <div className="soft-card rounded-[1.75rem] p-8">
