@@ -3,7 +3,7 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 import { useRouter } from "next/navigation";
-import type { BlogCard, EventCard, Project, Skill } from "@/lib/content";
+import type { BlogCard, EventCard, Project, Skill, Certificate } from "@/lib/content";
 import { publicSettings } from "@/lib/public-settings";
 
 type AdminContent = {
@@ -11,6 +11,7 @@ type AdminContent = {
   projects: Project[];
   blogCards: BlogCard[];
   events: EventCard[];
+  certificates: Certificate[];
 };
 
 type CollectionName = keyof AdminContent;
@@ -50,6 +51,17 @@ function makeEvent(): EventCard {
     description: "",
     image: "",
     date: "",
+  };
+}
+
+function makeCertificate(): Certificate {
+  return {
+    id: crypto.randomUUID(),
+    title: "",
+    issuer: "",
+    date: "",
+    description: "",
+    certificateUrl: "",
   };
 }
 
@@ -100,6 +112,7 @@ export function AdminDashboard({
   projects: initialProjects,
   blogCards: initialBlogCards,
   events: initialEvents,
+  certificates: initialCertificates,
   source,
 }: AdminDashboardProps) {
   const router = useRouter();
@@ -107,6 +120,7 @@ export function AdminDashboard({
   const [projects, setProjects] = useState(initialProjects);
   const [blogCards, setBlogCards] = useState(initialBlogCards);
   const [events, setEvents] = useState(initialEvents);
+  const [certificates, setCertificates] = useState(initialCertificates);
   const [saving, setSaving] = useState<CollectionName | null>(null);
   const [message, setMessage] = useState<string>("");
 
@@ -148,7 +162,7 @@ export function AdminDashboard({
   }
 
   async function handleImageChange(
-    collection: "blogCards" | "events",
+    collection: "blogCards" | "events" | "certificates",
     index: number,
     file: File | null,
   ) {
@@ -169,11 +183,17 @@ export function AdminDashboard({
         );
         setBlogCards(next);
         updatedItems = next;
-      } else {
+      } else if (collection === "events") {
         const next = events.map((item, itemIndex) =>
           itemIndex === index ? { ...item, image: url } : item,
         );
         setEvents(next);
+        updatedItems = next;
+      } else {
+        const next = certificates.map((item, itemIndex) =>
+          itemIndex === index ? { ...item, certificateUrl: url } : item,
+        );
+        setCertificates(next);
         updatedItems = next;
       }
 
@@ -445,6 +465,85 @@ export function AdminDashboard({
                 onChange={(event) =>
                   handleImageChange(
                     "events",
+                    index,
+                    event.target.files?.[0] || null,
+                  )
+                }
+                className="rounded-2xl border border-border bg-surface px-4 py-3"
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => removeItem(index)}
+                className="rounded-full border border-border px-4 py-3 text-sm"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        )}
+      />
+
+      <CollectionEditor
+        title="Certificates"
+        description="Issued certificates with file link, issuer, date, and optional description."
+        items={certificates}
+        setItems={setCertificates}
+        onAdd={() => setCertificates((current) => [...current, makeCertificate()])}
+        onSave={() => handleSave("certificates", certificates)}
+        saving={saving === "certificates"}
+        canWrite={canWrite}
+        renderRow={(item, index, updateItem, removeItem) => (
+          <div className="space-y-4">
+            <div className="grid gap-4 lg:grid-cols-2">
+              <input
+                value={item.title}
+                onChange={(event) =>
+                  updateItem(index, "title", event.target.value)
+                }
+                placeholder="Certificate title"
+                className="rounded-2xl border border-border bg-surface px-4 py-3"
+              />
+              <input
+                value={item.issuer}
+                onChange={(event) =>
+                  updateItem(index, "issuer", event.target.value)
+                }
+                placeholder="Issuer"
+                className="rounded-2xl border border-border bg-surface px-4 py-3"
+              />
+            </div>
+            <input
+              value={item.date}
+              onChange={(event) => updateItem(index, "date", event.target.value)}
+              placeholder="Date or duration"
+              className="rounded-2xl border border-border bg-surface px-4 py-3"
+            />
+            <textarea
+              value={item.description}
+              onChange={(event) =>
+                updateItem(index, "description", event.target.value)
+              }
+              rows={4}
+              placeholder="Description (optional)"
+              className="w-full rounded-2xl border border-border bg-surface px-4 py-3"
+            />
+            <div className="grid gap-4 lg:grid-cols-[1fr_auto]">
+              <input
+                value={(item as any).certificateUrl || (item as any).certificate_url || ""}
+                onChange={(event) =>
+                  updateItem(index, "certificateUrl" as any, event.target.value as any)
+                }
+                placeholder="Certificate URL or Supabase storage URL"
+                className="rounded-2xl border border-border bg-surface px-4 py-3"
+              />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(event) =>
+                  handleImageChange(
+                    "certificates",
                     index,
                     event.target.files?.[0] || null,
                   )

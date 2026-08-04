@@ -28,6 +28,15 @@ export type EventCard = {
   date: string;
 };
 
+export type Certificate = {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  description?: string;
+  certificateUrl?: string;
+};
+
 export const skills: Skill[] = [
   { id: "1", name: "React", category: "Frontend" },
   { id: "2", name: "Next.js", category: "Frontend" },
@@ -184,6 +193,8 @@ export const events: EventCard[] = [
     date: "2024",
   },
 ];
+
+export const certificates: Certificate[] = [];
 
 export const education = [
   {

@@ -8,9 +8,9 @@ import {
   setupRequiredMessage,
 } from "@/lib/supabase-errors";
 
-type ContentCollection = "skills" | "projects" | "blogCards" | "events";
+type ContentCollection = "skills" | "projects" | "blogCards" | "events" | "certificates";
 
-const collections = ["skills", "projects", "blogCards", "events"] as const;
+const collections = ["skills", "projects", "blogCards", "events", "certificates"] as const;
 const maxItemsPerCollection = 100;
 const maxTextLength = 4000;
 const maxStackItems = 12;
@@ -43,6 +43,8 @@ function getTableName(collection: ContentCollection) {
       return "blog_cards";
     case "events":
       return "events";
+    case "certificates":
+      return "certificates";
   }
 }
 
@@ -159,6 +161,19 @@ function mapItems(
         size_class: cleanSizeClass(item.sizeClass || item.size_class),
       };
     }
+
+      if (collection === "certificates") {
+        return {
+          ...base,
+          title: cleanText(item.title, 180),
+          issuer: cleanText(item.issuer, 120),
+          date_text: cleanText(item.date || item.date_text, 80),
+          description: cleanText(item.description),
+          certificate_url: cleanImageUrl(
+            item.certificate_url || item.certificateUrl || item.image || item.image_url,
+          ),
+        };
+      }
 
     return {
       ...base,

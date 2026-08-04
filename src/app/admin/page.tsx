@@ -12,7 +12,7 @@ export default async function AdminPage() {
     redirect("/admin/login?next=/admin");
   }
 
-  const { blogCards, events, projects, skills, source } =
+  const { blogCards, events, projects, skills, certificates, source } =
     await getPortfolioContent();
 
   return (
@@ -29,6 +29,7 @@ export default async function AdminPage() {
       <AdminDashboard
         blogCards={blogCards}
         events={events}
+        certificates={certificates}
         projects={projects}
         skills={skills}
         source={source}

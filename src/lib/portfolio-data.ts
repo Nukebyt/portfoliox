@@ -6,6 +6,7 @@ import {
   blogCards as fallbackBlogCards,
   education as fallbackEducation,
   events as fallbackEvents,
+  certificates as fallbackCertificates,
   projects as fallbackProjects,
   skills as fallbackSkills,
   technologies as fallbackTechnologies,
@@ -47,6 +48,16 @@ type SupabaseEventRow = {
   description: string;
   image_url: string | null;
   date?: string | null;
+};
+
+type SupabaseCertificateRow = {
+  id: string | number;
+  title: string;
+  issuer: string | null;
+  date_text?: string | null;
+  description?: string | null;
+  certificate_url?: string | null;
+  display_order?: number | null;
 };
 
 function createSupabaseServerClient() {
@@ -101,8 +112,13 @@ export async function getPortfolioContent() {
     };
   }
 
-  const [skillsResult, projectsResult, blogCardsResult, eventsResult] =
-    await Promise.all([
+  const [
+    skillsResult,
+    projectsResult,
+    blogCardsResult,
+    eventsResult,
+    certificatesResult,
+  ] = await Promise.all([
       client.from("skills").select("id,name,category").order("sort_order"),
       client
         .from("projects")
@@ -116,6 +132,12 @@ export async function getPortfolioContent() {
         .from("events")
         .select("id,title,description,image_url,date")
         .order("sort_order"),
+      client
+        .from("certificates")
+        .select(
+          "id,title,issuer,date_text,description,certificate_url,display_order",
+        )
+        .order("display_order", { ascending: true }),
     ]);
 
   return {
@@ -157,6 +179,16 @@ export async function getPortfolioContent() {
           image: row.image_url || "",
           date: row.date || "",
         })) ?? fallbackEvents),
+    certificates: certificatesResult.error
+      ? fallbackCertificates
+      : (certificatesResult.data?.map((row: SupabaseCertificateRow) => ({
+          id: String(row.id),
+          title: row.title,
+          issuer: row.issuer || "",
+          date: row.date_text || "",
+          description: row.description || "",
+          certificateUrl: row.certificate_url || "",
+        })) ?? fallbackCertificates),
     education: toFallbackEducation(fallbackEducation),
     technologies: fallbackTechnologies,
     source: (

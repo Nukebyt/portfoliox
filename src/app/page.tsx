@@ -11,6 +11,7 @@ const navItems = [
   ["About", "#about"],
   ["Services", "#services"],
   ["Projects", "#projects"],
+  ["Certificates", "#certificates"],
   ["Contact", "#contact"],
 ];
 
@@ -77,7 +78,7 @@ function SocialIcon({ glyph }: { glyph: string }) {
 }
 
 export default async function Home() {
-  const { blogCards, education, events, projects, skills, technologies } =
+  const { blogCards, education, events, projects, skills, technologies, certificates } =
     await getPortfolioContent();
 
   return (
@@ -400,6 +401,45 @@ export default async function Home() {
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section id="certificates" className={sectionShell}>
+          <SectionHeading
+            eyebrow="Certificates"
+            title="Certificates & Courses"
+            description=""
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {certificates.length === 0 ? (
+              <div className="soft-card rounded-[1.5rem] p-6">No certificates yet.</div>
+            ) : (
+              certificates.map((cert) => (
+                <article
+                  key={cert.id}
+                  className="group overflow-hidden rounded-[1.5rem] border border-border bg-[color:var(--card)] shadow-sm transition hover:-translate-y-1"
+                >
+                  <div className="p-5">
+                    <div className="text-sm text-[color:var(--muted)]">{cert.date}</div>
+                    <h3 className="mt-2 text-2xl font-semibold">{cert.title}</h3>
+                    <div className="mt-1 text-sm text-[color:var(--muted)]">{cert.issuer}</div>
+                    <p className="mt-3 leading-7 text-[color:var(--muted)]">{cert.description}</p>
+                    {cert.certificateUrl ? (
+                      <div className="mt-4">
+                        <a
+                          href={cert.certificateUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="font-semibold text-[color:var(--color-accent)]"
+                        >
+                          View Certificate
+                        </a>
+                      </div>
+                    ) : null}
+                  </div>
+                </article>
+              ))
+            )}
           </div>
         </section>
 
