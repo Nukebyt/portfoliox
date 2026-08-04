@@ -39,6 +39,53 @@ export const skills: Skill[] = [
   { id: "8", name: "Flutter", category: "Mobile" },
 ];
 
+export type TechGroup = {
+  id: string;
+  heading: string;
+  items: string[];
+};
+
+export const technologies: TechGroup[] = [
+  {
+    id: "t1",
+    heading: "VLSI & Hardware Design",
+    items: [
+      "Verilog",
+      "SystemVerilog",
+      "RTL Design",
+      "Computer/Microprocessor Architecture",
+      "RISC-V",
+      "Cadence (Genus, Innovus, Virtuoso)",
+      "Xilinx Vivado",
+      "Intel Quartus Prime",
+      "ModelSim/Questa",
+    ],
+  },
+  {
+    id: "t2",
+    heading: "Software & Simulation",
+    items: [
+      "Python",
+      "Embedded C",
+      "MATLAB",
+      "SolidWorks",
+      "Git/GitHub",
+      "Linux",
+    ],
+  },
+  {
+    id: "t3",
+    heading: "Management & Analytics",
+    items: [
+      "MS Excel (Pivot Tables, VLOOKUP, dashboards)",
+      "Power BI",
+      "SQL",
+      "Root Cause Analysis (RCA)",
+      "Agile-style workflows",
+    ],
+  },
+];
+
 export const projects: Project[] = [
   {
     id: "p1",
@@ -140,18 +187,11 @@ export const events: EventCard[] = [
 
 export const education = [
   {
-    title: "National Institute of Technology Karnataka, Surathkal",
-    subtitle: "Bachelor of Technology",
-    period: "December 2020 - May 2024",
+    title: "Vellore Institute of Technology, Chennai",
+    subtitle: "B.Tech in Electronics Engineering (VLSI Design) — CGPA: 8.04",
+    period: "2023–2027",
     details: [
-      "Major: Electronics and Communication Engineering",
-      "Minor: Information Technology",
+      "Relevant coursework: Computer Architecture, Microprocessors & Microcontrollers, Embedded C Programming, Digital Systems Design, VLSI System Design, CAD for IC Design",
     ],
-  },
-  {
-    title: "Polkadot Blockchain Academy",
-    subtitle: "Graduation with distinction",
-    period: "May 2024 - June 2024",
-    details: ["Fifth cohort at the National University of Singapore."],
   },
 ];

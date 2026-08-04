@@ -8,6 +8,7 @@ import {
   events as fallbackEvents,
   projects as fallbackProjects,
   skills as fallbackSkills,
+  technologies as fallbackTechnologies,
 } from "@/lib/content";
 import { settings } from "@/lib/settings";
 
@@ -95,6 +96,7 @@ export async function getPortfolioContent() {
       blogCards: fallbackBlogCards,
       events: fallbackEvents,
       education: toFallbackEducation(fallbackEducation),
+      technologies: fallbackTechnologies,
       source: "local-fallback" as const,
     };
   }
@@ -156,6 +158,7 @@ export async function getPortfolioContent() {
           date: row.date || "",
         })) ?? fallbackEvents),
     education: toFallbackEducation(fallbackEducation),
+    technologies: fallbackTechnologies,
     source: (
       skillsResult.error ||
       projectsResult.error ||
