@@ -13,9 +13,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aakash Sharma | Portfolio",
-  description:
-    "Portfolio with light and dark mode, Supabase-ready content, and Formspree contact form.",
+  title: "Priyanuj Boruah | Portfolio",
 };
 
 export default function RootLayout({

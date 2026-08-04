@@ -15,10 +15,9 @@ const navItems = [
 ];
 
 const socialLinks = [
-  { glyph: "GH", href: "https://github.com", label: "GitHub" },
-  { glyph: "IG", href: "https://instagram.com", label: "Instagram" },
-  { glyph: "IN", href: "https://linkedin.com", label: "LinkedIn" },
-  { glyph: "◎", href: "https://stackoverflow.com", label: "Website" },
+  { glyph: "GH", href: "https://github.com/Nukebyt", label: "GitHub" },
+  { glyph: "IG", href: "https://instagram.com/nukefilms_", label: "Instagram" },
+  { glyph: "IN", href: "https://linkedin.com/in/nukebyt", label: "LinkedIn" },
 ];
 
 const serviceCards = [
@@ -62,7 +61,7 @@ export default async function Home() {
             href="#home"
             className="text-xl font-black tracking-tight sm:text-2xl"
           >
-            choti.nunni
+            priyanuj.boruah
           </Link>
           <nav className="hidden items-center gap-1 rounded-full border border-border bg-[color:var(--surface)] p-1 md:flex">
             {navItems.map(([label, href]) => (
@@ -89,13 +88,13 @@ export default async function Home() {
           <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
             <div className="space-y-8">
               <div className="inline-flex w-fit items-center rounded-full border border-border bg-[color:var(--card)] px-4 py-2 text-sm font-medium text-[color:var(--muted)] shadow-sm">
-                Front-end / Full-stack developer
+                Electronics / VLSI Engineer
               </div>
               <div className="space-y-5">
                 <h1 className="max-w-3xl text-5xl font-black leading-[0.95] tracking-tight sm:text-7xl">
-                  Hi, I am nunni
+                  Hi, I am Priyanuj
                   <span className="mt-3 block text-[color:var(--color-accent)]">
-                    Front End Developer
+                    VLSI Engineer
                   </span>
                 </h1>
                 <p className="max-w-2xl text-base leading-8 text-[color:var(--muted)] sm:text-lg">
@@ -200,7 +199,7 @@ export default async function Home() {
             <SectionHeading
               eyebrow="Education"
               title="Education timeline"
-              description="Light-weight motion is reserved for this area so the page feels alive without becoming noisy."
+              description=""
             />
             <div className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
               <div className="soft-card rounded-[1.75rem] p-8">
@@ -236,7 +235,7 @@ export default async function Home() {
           <SectionHeading
             eyebrow="Services"
             title="What I provide"
-            description="This section follows the look of your reference while keeping the cards easy to maintain."
+            description=""
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {serviceCards.map((card) => (
@@ -257,7 +256,7 @@ export default async function Home() {
           <SectionHeading
             eyebrow="Projects"
             title="What I built"
-            description="Project cards are data-driven and ready to be swapped from Supabase in the admin dashboard."
+            description=""
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {projects.map((project) => (
@@ -290,8 +289,8 @@ export default async function Home() {
         <section className={sectionShell}>
           <SectionHeading
             eyebrow="Words and experiences"
-            title="Blogspot-linked cards"
-            description="Each card can be managed from the dashboard with a cover image, title, and Blogspot URL; the masonry layout keeps variable image sizes organized."
+            title="Blogs"
+            description=""
           />
           <div className="masonry mt-10">
             {blogCards.map((card, index) => (
@@ -329,7 +328,7 @@ export default async function Home() {
           <SectionHeading
             eyebrow="Events"
             title="Events I attended"
-            description="Image-heavy cards with a moody feel inspired by the reference while staying responsive."
+            description=""
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {events.map((event, index) => (
@@ -367,7 +366,7 @@ export default async function Home() {
           <SectionHeading
             eyebrow="Contact"
             title="Connect with me"
-            description="The form is wired for Formspree, so it can send messages to a chosen email without adding a custom backend."
+            description=""
           />
           <div className="mt-10 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <ContactForm />
@@ -386,7 +385,7 @@ export default async function Home() {
                 <div>
                   <div className="text-2xl font-semibold">Address</div>
                   <p className="mt-3 leading-7 text-[color:var(--muted)]">
-                    Jhilmil Colony, Delhi, India
+                    Vellore Institute of Technology, Chennai, Tamil Nadu, India
                   </p>
                 </div>
                 <div>
