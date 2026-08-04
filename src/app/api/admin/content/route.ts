@@ -212,7 +212,13 @@ export async function PUT(request: NextRequest) {
 
   const client = createAdminClient();
 
+  // Debug: show whether admin client could be created (no secrets printed)
+  // eslint-disable-next-line no-console
+  console.log("[admin] createAdminClient ->", Boolean(client));
+
   if (!client) {
+    // eslint-disable-next-line no-console
+    console.warn("[admin] Supabase service role key missing in server env");
     return NextResponse.json(
       {
         ok: false,
@@ -223,6 +229,13 @@ export async function PUT(request: NextRequest) {
   }
 
   const body = (await request.json().catch(() => null)) as SavePayload | null;
+
+  // Debug: log a small summary of the incoming payload
+  // eslint-disable-next-line no-console
+  console.log(
+    "[admin] incoming payload:",
+    body ? { collection: body.collection, items: Array.isArray(body.items) ? body.items.length : 0 } : null,
+  );
 
   if (
     !body ||
@@ -245,6 +258,8 @@ export async function PUT(request: NextRequest) {
     .not("id", "is", null);
 
   if (deleteResult.error) {
+    // eslint-disable-next-line no-console
+    console.error("[admin] deleteResult.error ->", deleteResult.error.message);
     return NextResponse.json(
       {
         ok: false,
@@ -259,6 +274,8 @@ export async function PUT(request: NextRequest) {
   const insertResult = await client.from(tableName).insert(rows);
 
   if (insertResult.error) {
+    // eslint-disable-next-line no-console
+    console.error("[admin] insertResult.error ->", insertResult.error.message);
     return NextResponse.json(
       {
         ok: false,

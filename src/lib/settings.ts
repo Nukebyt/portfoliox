@@ -40,3 +40,14 @@ export const settings = {
     process.env.CONTACT_EMAIL ||
     "your@email.com",
 };
+
+// Debug: print presence of critical env vars in non-production for troubleshooting.
+if (process.env.NODE_ENV !== "production") {
+  // Don't print secrets; only indicate presence/absence.
+  // Useful when the dev server was not restarted or env didn't load.
+  // eslint-disable-next-line no-console
+  console.log(
+    "[dev] settings: SUPABASE_SERVICE_ROLE_KEY present:",
+    Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
+  );
+}

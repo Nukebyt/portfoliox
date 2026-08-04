@@ -30,6 +30,7 @@ export default async function AdminPage() {
         blogCards={blogCards}
         events={events}
         certificates={certificates}
+        
         projects={projects}
         skills={skills}
         source={source}

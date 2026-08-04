@@ -41,7 +41,7 @@ create table if not exists public.events (
 
 create table if not exists public.certificates (
   id uuid primary key default gen_random_uuid(),
-  display_order int not null default 0,
+  sort_order int not null default 0,
   title text not null default '',
   issuer text not null default '',
   date_text text not null default '',

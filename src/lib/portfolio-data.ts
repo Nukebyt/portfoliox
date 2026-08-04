@@ -57,7 +57,7 @@ type SupabaseCertificateRow = {
   date_text?: string | null;
   description?: string | null;
   certificate_url?: string | null;
-  display_order?: number | null;
+  sort_order?: number | null;
 };
 
 function createSupabaseServerClient() {
@@ -106,6 +106,7 @@ export async function getPortfolioContent() {
       projects: fallbackProjects,
       blogCards: fallbackBlogCards,
       events: fallbackEvents,
+      certificates: fallbackCertificates,
       education: toFallbackEducation(fallbackEducation),
       technologies: fallbackTechnologies,
       source: "local-fallback" as const,
@@ -135,9 +136,9 @@ export async function getPortfolioContent() {
       client
         .from("certificates")
         .select(
-          "id,title,issuer,date_text,description,certificate_url,display_order",
+          "id,title,issuer,date_text,description,certificate_url,sort_order",
         )
-        .order("display_order", { ascending: true }),
+        .order("sort_order", { ascending: true }),
     ]);
 
   return {

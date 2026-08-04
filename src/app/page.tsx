@@ -414,11 +414,23 @@ export default async function Home() {
             {certificates.length === 0 ? (
               <div className="soft-card rounded-[1.5rem] p-6">No certificates yet.</div>
             ) : (
-              certificates.map((cert) => (
+              certificates.map((cert, index) => (
                 <article
                   key={cert.id}
                   className="group overflow-hidden rounded-[1.5rem] border border-border bg-[color:var(--card)] shadow-sm transition hover:-translate-y-1"
                 >
+                  <div className="relative h-72 w-full overflow-hidden">
+                    <Image
+                      src={cert.certificateUrl || ''}
+                      alt={cert.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      priority={index === 0}
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(2,6,23,0.9))]" />
+                  </div>
                   <div className="p-5">
                     <div className="text-sm text-[color:var(--muted)]">{cert.date}</div>
                     <h3 className="mt-2 text-2xl font-semibold">{cert.title}</h3>
