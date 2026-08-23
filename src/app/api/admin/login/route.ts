@@ -22,8 +22,15 @@ function isSameOrigin(request: NextRequest) {
     return true;
   }
 
+  const host =
+    request.headers.get("x-forwarded-host") || request.headers.get("host");
+
+  if (!host) {
+    return false;
+  }
+
   try {
-    return new URL(origin).origin === request.nextUrl.origin;
+    return new URL(origin).host === host;
   } catch {
     return false;
   }
