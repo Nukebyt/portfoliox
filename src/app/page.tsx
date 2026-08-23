@@ -27,12 +27,12 @@ const serviceCards = [
   {
     glyph: "01",
     title: "Low-Latency & Financial Systems",
-    text: "C++ infrastructure for exchange-like systems — matching engines, order books, and distributed event pipelines (Kafka, Postgres, Redis) built for correctness under failure, not just demos.",
+    text: "C++ infrastructure for exchange-like systems: matching engines, order books, and distributed event pipelines (Kafka, Postgres, Redis) built for correctness under failure, not just demos.",
   },
   {
     glyph: "02",
     title: "Applied AI & Data Analytics",
-    text: "Local-first ML tooling and SQL-driven analytics — offline LLM pipelines, forecasting and classification models, and Tableau/Power BI dashboards.",
+    text: "Local-first ML tooling and SQL-driven analytics: offline LLM pipelines, forecasting and classification models, and Tableau/Power BI dashboards.",
   },
   {
     glyph: "03",
@@ -145,7 +145,7 @@ export default async function Home() {
               </div>
               <p className="max-w-xl text-base leading-8 text-[color:var(--muted)]">
                 I build C++ trading infrastructure, applied AI tooling, and
-                SQL/BI analytics — on a foundation of RTL, RISC-V, and FPGA
+                SQL/BI analytics, on a foundation of RTL, RISC-V, and FPGA
                 design built for real deadlines, not demos.
               </p>
               <div className="flex flex-wrap items-center gap-3">
@@ -190,7 +190,7 @@ export default async function Home() {
                 A bit about me
               </h3>
               <p className="mt-4 leading-8 text-[color:var(--muted)]">
-                I'm an Electronics Engineering student (VLSI Design) at VIT Chennai, working at the intersection of RTL design, embedded systems, and computer architecture. That foundation is now pulling me toward low-latency systems and financial engineering — I build C++ trading infrastructure, local-first AI tooling, and SQL/BI analytics alongside FPGA work like a pipelined CFAR radar-detection system. I also led Reva Solar Racing, a 20+ member student team building a solar electric vehicle. GATE 2026 AIR 1626 (Instrumentation Engineering).
+                I'm an Electronics Engineering student (VLSI Design) at VIT Chennai, working at the intersection of RTL design, embedded systems, and computer architecture. That foundation is now pulling me toward low-latency systems and financial engineering: I build C++ trading infrastructure, local-first AI tooling, and SQL/BI analytics alongside FPGA work like a pipelined CFAR radar-detection system. I also led Reva Solar Racing, a 20+ member student team building a solar electric vehicle. GATE 2026 AIR 1626 (Instrumentation Engineering).
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {skills.slice(0, 6).map((skill) => (

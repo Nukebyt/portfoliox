@@ -199,7 +199,7 @@ export const certificates: Certificate[] = [];
 export const education = [
   {
     title: "Vellore Institute of Technology, Chennai",
-    subtitle: "B.Tech in Electronics Engineering (VLSI Design) — CGPA: 8.04",
+    subtitle: "B.Tech in Electronics Engineering (VLSI Design) - CGPA: 8.04",
     period: "2023–2027",
     details: [
       "Relevant coursework: Computer Architecture, Microprocessors & Microcontrollers, Embedded C Programming, Digital Systems Design, VLSI System Design, CAD for IC Design",
