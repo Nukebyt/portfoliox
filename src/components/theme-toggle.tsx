@@ -20,10 +20,12 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface text-foreground shadow-sm transition hover:scale-105 hover:border-[color:var(--color-accent)]"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border bg-surface text-foreground transition hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)]"
       aria-label="Toggle theme"
     >
-      <span aria-hidden="true">◐</span>
+      <span aria-hidden="true" className="text-base leading-none">
+        ◐
+      </span>
     </button>
   );
 }

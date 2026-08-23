@@ -51,21 +51,25 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="soft-card rounded-[1.75rem] p-6 sm:p-8"
+      className="soft-card rounded-md p-6 sm:p-8"
     >
       <div className="grid gap-5">
         <label className="grid gap-2">
-          <span className="text-sm font-medium">Name</span>
+          <span className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
+            Name
+          </span>
           <input
             name="name"
             required
             autoComplete="name"
             placeholder="Enter your name"
-            className="rounded-2xl border border-border bg-[color:var(--surface)] px-4 py-3 outline-none ring-0 transition focus:border-[color:var(--color-accent)]"
+            className="rounded-md border border-border bg-[color:var(--surface)] px-4 py-3 outline-none ring-0 transition focus:border-[color:var(--color-accent)]"
           />
         </label>
         <label className="grid gap-2">
-          <span className="text-sm font-medium">Email</span>
+          <span className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
+            Email
+          </span>
           <input
             name="email"
             type="email"
@@ -76,17 +80,19 @@ export function ContactForm() {
             data-lpignore="true"
             data-form-type="other"
             suppressHydrationWarning
-            className="rounded-2xl border border-border bg-[color:var(--surface)] px-4 py-3 outline-none ring-0 transition focus:border-[color:var(--color-accent)]"
+            className="rounded-md border border-border bg-[color:var(--surface)] px-4 py-3 outline-none ring-0 transition focus:border-[color:var(--color-accent)]"
           />
         </label>
         <label className="grid gap-2">
-          <span className="text-sm font-medium">Message</span>
+          <span className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
+            Message
+          </span>
           <textarea
             name="message"
             rows={6}
             required
             placeholder="Enter your message"
-            className="rounded-2xl border border-border bg-[color:var(--surface)] px-4 py-3 outline-none ring-0 transition focus:border-[color:var(--color-accent)]"
+            className="rounded-md border border-border bg-[color:var(--surface)] px-4 py-3 outline-none ring-0 transition focus:border-[color:var(--color-accent)]"
           />
         </label>
       </div>
@@ -101,14 +107,14 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="rounded-full bg-[color:var(--color-accent)] px-6 py-3 font-semibold text-white transition hover:bg-[color:var(--color-accent-strong)] disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-md bg-[color:var(--color-accent)] px-6 py-3 font-semibold text-[color:var(--on-accent)] transition hover:bg-[color:var(--color-accent-strong)] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === "sending" ? "Sending..." : "Submit"}
         </button>
       </div>
       {message ? (
         <div
-          className={`mt-4 rounded-2xl border px-4 py-3 text-sm ${
+          className={`mt-4 rounded-md border px-4 py-3 text-sm ${
             status === "error"
               ? "border-red-400/40 bg-red-500/10 text-red-700 dark:text-red-300"
               : "border-emerald-400/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
