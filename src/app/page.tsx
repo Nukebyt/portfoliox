@@ -26,18 +26,18 @@ const socialLinks = [
 const serviceCards = [
   {
     glyph: "01",
-    title: "Low-Latency & Financial Systems",
-    text: "C++ infrastructure for exchange-like systems: matching engines, order books, and distributed event pipelines (Kafka, Postgres, Redis) built for correctness under failure, not just demos.",
+    title: "RTL Design & Verification",
+    text: "Verilog and SystemVerilog RTL taken from spec to silicon: UVM testbenches, SVA protocol checkers, and static timing closure across PVT corners on real FPGA hardware.",
   },
   {
     glyph: "02",
-    title: "Applied AI & Data Analytics",
-    text: "Local-first ML tooling and SQL-driven analytics: offline LLM pipelines, forecasting and classification models, and Tableau/Power BI dashboards.",
+    title: "FPGA Hardware Acceleration",
+    text: "Accelerators for compute-heavy workloads: CNN inference pipelines, NTT cryptographic cores, and systolic-array matrix engines built for parallelism, not just correctness.",
   },
   {
     glyph: "03",
-    title: "VLSI & Digital Design",
-    text: "RTL design in Verilog/SystemVerilog, computer architecture, and EDA toolchains (Cadence, Vivado, Quartus) for scalable digital systems.",
+    title: "SoC & Interconnect Design",
+    text: "AXI4 crossbars, Avalon-MM bridges, and ARM HPS to FPGA fabric integration on SoC platforms like the Cyclone V DE10-Standard.",
   },
   {
     glyph: "04",
@@ -133,20 +133,21 @@ export default async function Home() {
             <div className="min-w-0 space-y-8">
               <div className="inline-flex max-w-full items-start gap-2 rounded-md border border-border bg-[color:var(--background)] px-3 py-1.5 font-mono text-[11px] font-medium uppercase leading-relaxed tracking-[0.15em] text-[color:var(--muted)] sm:w-fit sm:text-xs sm:tracking-[0.2em]">
                 <span className="mt-0.5 shrink-0 text-[color:var(--color-accent)]">●</span>
-                <span>Low-Latency Systems / Financial Engineering / Applied AI</span>
+                <span>FPGA Design / RTL Verification / SoC Integration</span>
               </div>
               <div className="space-y-2">
                 <h1 className="max-w-3xl font-serif text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl md:text-7xl">
                   Priyanuj Boruah
                 </h1>
                 <p className="font-serif text-xl italic text-[color:var(--color-accent)] sm:text-2xl md:text-3xl">
-                  Systems Engineer, from Silicon to Markets
+                  VLSI &amp; FPGA Design Engineer
                 </p>
               </div>
               <p className="max-w-xl text-base leading-8 text-[color:var(--muted)]">
-                I build C++ trading infrastructure, applied AI tooling, and
-                SQL/BI analytics, on a foundation of RTL, RISC-V, and FPGA
-                design built for real deadlines, not demos.
+                I design and verify hardware accelerators in Verilog and
+                SystemVerilog: CNN inference engines, cryptographic cores,
+                and SoC interconnects, taken from RTL through UVM
+                verification to timing-closed FPGA silicon.
               </p>
               <div className="flex flex-wrap items-center gap-3">
                 <Link
@@ -190,7 +191,7 @@ export default async function Home() {
                 A bit about me
               </h3>
               <p className="mt-4 leading-8 text-[color:var(--muted)]">
-                I'm an Electronics Engineering student (VLSI Design) at VIT Chennai, working at the intersection of RTL design, embedded systems, and computer architecture. That foundation is now pulling me toward low-latency systems and financial engineering: I build C++ trading infrastructure, local-first AI tooling, and SQL/BI analytics alongside FPGA work like a pipelined CFAR radar-detection system. I also led Reva Solar Racing, a 20+ member student team building a solar electric vehicle. GATE 2026 AIR 1626 (Instrumentation Engineering).
+                I'm an Electronics Engineering student (VLSI Design) at VIT Chennai, working at the intersection of RTL design, computer architecture, and hardware verification. I design and verify FPGA accelerators on Cyclone V silicon: CNN inference engines, NTT cryptographic cores, AXI4 crossbar interconnects, and systolic-array NPUs, each taken through UVM verification and static timing closure to real hardware. I also led Reva Solar Racing, a 20+ member student team building a solar electric vehicle. GATE 2026 AIR 1626 (Instrumentation Engineering).
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {skills.slice(0, 6).map((skill) => (
