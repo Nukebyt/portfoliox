@@ -114,11 +114,12 @@ export default async function Home() {
             <ThemeToggle />
             <Link
               href="/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
               className="hidden items-center gap-2 rounded-md border border-border px-4 py-2 text-sm font-medium transition hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)] md:inline-flex"
             >
               Resume
             </Link>
-            {/* TODO: Place the actual resume PDF at public/resume.pdf */}
             <MobileNav navItems={navItems as [string, string][]} />
           </div>
         </div>

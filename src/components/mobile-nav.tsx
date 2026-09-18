@@ -55,6 +55,8 @@ export function MobileNav({
             ))}
             <Link
               href="/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
               onClick={() => setOpen(false)}
               className="mt-6 inline-flex items-center justify-center gap-2 rounded-md border border-border px-4 py-3 text-sm font-medium transition hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)]"
             >
