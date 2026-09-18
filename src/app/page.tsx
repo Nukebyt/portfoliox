@@ -226,19 +226,6 @@ export default async function Home() {
                   ))}
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
-                {skills.map((skill) => (
-                  <div
-                    key={skill.id}
-                    className="soft-card flex flex-col items-center justify-center gap-2 rounded-md px-4 py-5 text-center"
-                  >
-                    <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                      {skill.category}
-                    </div>
-                    <div className="font-medium">{skill.name}</div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
 
