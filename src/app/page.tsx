@@ -84,9 +84,9 @@ function SocialIcon({ glyph }: { glyph: string }) {
   );
 }
 
-export default async function Home() {
+export default function Home() {
   const { blogCards, education, events, projects, skills, technologies, certificates } =
-    await getPortfolioContent();
+    getPortfolioContent();
 
   return (
     <div className="min-h-screen min-w-0">
@@ -194,16 +194,18 @@ export default async function Home() {
               <p className="mt-4 leading-8 text-[color:var(--muted)]">
                 I'm an Electronics Engineering student (VLSI Design) at VIT Chennai, working at the intersection of RTL design, computer architecture, and hardware verification. I design and verify FPGA accelerators on Cyclone V silicon: CNN inference engines, NTT cryptographic cores, AXI4 crossbar interconnects, and systolic-array NPUs, each taken through UVM verification and static timing closure to real hardware. I also led Reva Solar Racing, a 20+ member student team building a solar electric vehicle. GATE 2026 AIR 1626 (Instrumentation Engineering).
               </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {skills.slice(0, 6).map((skill) => (
-                  <span
-                    key={skill.id}
-                    className="rounded-md border border-border px-3 py-1.5 font-mono text-xs"
-                  >
-                    {skill.name}
-                  </span>
-                ))}
-              </div>
+              {skills.length > 0 ? (
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {skills.slice(0, 6).map((skill) => (
+                    <span
+                      key={skill.id}
+                      className="rounded-md border border-border px-3 py-1.5 font-mono text-xs"
+                    >
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
             </div>
 
             <div className="space-y-6">
@@ -301,6 +303,9 @@ export default async function Home() {
             index="03"
           />
           <div className="mt-10">
+            {projects.length === 0 ? (
+              <div className="soft-card rounded-md p-6">No projects yet.</div>
+            ) : (
             <Carousel
               items={projects.map((project) => (
                 <Link
@@ -327,6 +332,7 @@ export default async function Home() {
                 </Link>
               ))}
             />
+            )}
           </div>
         </section>
 
@@ -338,6 +344,9 @@ export default async function Home() {
             index="04"
           />
           <div className="mt-10">
+            {blogCards.length === 0 ? (
+              <div className="soft-card rounded-md p-6">No posts yet.</div>
+            ) : (
             <Carousel
               items={blogCards.map((card, index) => (
                 <a
@@ -348,15 +357,17 @@ export default async function Home() {
                   className="group block overflow-hidden rounded-md border border-border bg-[color:var(--card)] transition hover:border-[color:var(--color-accent)]"
                 >
                   <div className="relative h-72 w-full">
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      loading={index === 0 ? "eager" : "lazy"}
-                      priority={index === 0}
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                    />
+                    {card.image ? (
+                      <Image
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        priority={index === 0}
+                        className="object-cover transition duration-500 group-hover:scale-105"
+                      />
+                    ) : null}
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(2,6,23,0.88))]" />
                     <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                       <div className="flex items-center gap-2 text-sm text-white/75">
@@ -368,6 +379,7 @@ export default async function Home() {
                 </a>
               ))}
             />
+            )}
           </div>
         </section>
 
@@ -379,6 +391,9 @@ export default async function Home() {
             index="05"
           />
           <div className="mt-10">
+            {events.length === 0 ? (
+              <div className="soft-card rounded-md p-6">No events yet.</div>
+            ) : (
             <Carousel
               items={events.map((event, index) => (
                 <article
@@ -386,15 +401,17 @@ export default async function Home() {
                   className="group flex h-full flex-col overflow-hidden rounded-md border border-border bg-[color:var(--card)] transition hover:border-[color:var(--color-accent)]"
                 >
                   <div className="relative h-72 w-full shrink-0 overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt={event.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      loading={index === 0 ? "eager" : "lazy"}
-                      priority={index === 0}
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                    />
+                    {event.image ? (
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        priority={index === 0}
+                        className="object-cover transition duration-500 group-hover:scale-105"
+                      />
+                    ) : null}
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(2,6,23,0.9))]" />
                   </div>
                   <div className="p-5">
@@ -409,6 +426,7 @@ export default async function Home() {
                 </article>
               ))}
             />
+            )}
           </div>
         </section>
 
@@ -430,15 +448,17 @@ export default async function Home() {
                     className="group flex h-full flex-col overflow-hidden rounded-md border border-border bg-[color:var(--card)] transition hover:border-[color:var(--color-accent)]"
                   >
                     <div className="relative h-72 w-full shrink-0 overflow-hidden">
-                      <Image
-                        src={cert.certificateUrl || ''}
-                        alt={cert.title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        loading={index === 0 ? "eager" : "lazy"}
-                        priority={index === 0}
-                        className="object-cover transition duration-500 group-hover:scale-105"
-                      />
+                      {cert.certificateUrl ? (
+                        <Image
+                          src={cert.certificateUrl}
+                          alt={cert.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          loading={index === 0 ? "eager" : "lazy"}
+                          priority={index === 0}
+                          className="object-cover transition duration-500 group-hover:scale-105"
+                        />
+                      ) : null}
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(2,6,23,0.9))]" />
                     </div>
                     <div className="p-5">

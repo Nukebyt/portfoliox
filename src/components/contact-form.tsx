@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { settings } from "@/lib/settings";
+import { publicSettings } from "@/lib/public-settings";
 
 export function ContactForm() {
   const [status, setStatus] = useState<
@@ -20,7 +20,7 @@ export function ContactForm() {
     setMessage("");
 
     try {
-      const response = await fetch(settings.formspreeAction, {
+      const response = await fetch(publicSettings.formspreeAction, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -99,7 +99,7 @@ export function ContactForm() {
       <input type="hidden" name="_subject" value="New portfolio message" />
       <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
         <a
-          href={`mailto:${settings.email}`}
+          href={`mailto:${publicSettings.email}`}
           className="text-sm font-medium underline decoration-[color:var(--color-accent)] underline-offset-4"
         >
           Send me email directly

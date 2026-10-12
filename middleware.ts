@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ADMIN_SESSION_COOKIE, verifySessionToken } from "@/lib/admin-session";
 
 function getContentSecurityPolicy() {
   const scriptSrc =
@@ -22,17 +21,9 @@ function getContentSecurityPolicy() {
   ].join("; ");
 }
 
-async function hasValidSession(request: NextRequest) {
-  const token = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
+export function middleware(_request: NextRequest) {
+  const response = NextResponse.next();
 
-  if (!token) {
-    return false;
-  }
-
-  return verifySessionToken(token);
-}
-
-function withSecurityHeaders(response: NextResponse) {
   response.headers.set("Content-Security-Policy", getContentSecurityPolicy());
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("X-Frame-Options", "DENY");
@@ -50,43 +41,6 @@ function withSecurityHeaders(response: NextResponse) {
   }
 
   return response;
-}
-
-export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
-  if (pathname === "/admin/login" || pathname === "/api/admin/login") {
-    return withSecurityHeaders(NextResponse.next());
-  }
-
-  const protectedApi = pathname.startsWith("/api/admin/");
-  const protectedPage = pathname.startsWith("/admin");
-
-  if (protectedApi || protectedPage) {
-    const validSession = await hasValidSession(request);
-
-    if (!validSession) {
-      if (protectedApi) {
-        return withSecurityHeaders(
-          NextResponse.json(
-            { ok: false, message: "Unauthorized." },
-            { status: 401 },
-          ),
-        );
-      }
-
-      return withSecurityHeaders(
-        NextResponse.redirect(
-          new URL(
-            `/admin/login?next=${encodeURIComponent(pathname)}`,
-            request.url,
-          ),
-        ),
-      );
-    }
-  }
-
-  return withSecurityHeaders(NextResponse.next());
 }
 
 export const config = {
